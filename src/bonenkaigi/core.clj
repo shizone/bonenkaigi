@@ -14,6 +14,6 @@
            (map #(if(= (.getCellType %) 0) (.getNumericCellValue %) (.getStringCellValue %) )))))) ;; 値の取得
 
 (let [member (vec (read-excel "resources/bonenkaigi-tickets-27273.xlsx"))
-      rank (vec (range 1 (+ (count member) 1)))]
+      rank (vec (range 1 (inc (count member))))]
   (map (fn [x y] (vector x y)) rank (shuffle member))
   )
