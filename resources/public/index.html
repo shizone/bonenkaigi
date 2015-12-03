@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Bonenkaigi</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <script type="text/javascript" src="js/knockout-3.4.0.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="twelve column" style="margin-top: 10%" data-bind="foreach: member">
+          <h1 data-bind="text: text"></h1><hr>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        if( this.response ) {
+          ko.applyBindings(this.response);
+        }
+      }
+    }
+    xmlHttpRequest.open('POST', 'members', true);
+    xmlHttpRequest.responseType = 'json';
+    xmlHttpRequest.send(null);
+  </script>
+</body>
+</html>
